@@ -1,7 +1,7 @@
 const util = require('util');
 const fs = require('fs');
-const uuid = require('uuid');
-const readFileAsync = util.promisify(fs.ReadFile);
+const uuidv1 = require('uuid/v1');
+const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
 
 class Store {
@@ -14,7 +14,8 @@ class Store {
     }
 
     getNotes() {
-        return this.read().then((notes) => {
+        return this.read()
+        .then((notes) => {
             let parsedNotes;
             try {
                 parsedNotes = [].concat(JSON.parse(notes));
@@ -29,13 +30,13 @@ class Store {
             const {title, text} = note;
 
             if (!title || !text) {
-              throw  (error)
+              console.error('Please enter note title and text')
             }
             
-            const newNote = {title, text, id: uuid()};
+            const newNote = {title, text, id: uuidv1()};
 
             return this.getNotes()
-                .then((notes) => notes.filter((note) => note.id !== id))
+                .then((notes) => [...notes, newNote])
                 .then((filteredNotes) => this.write(filteredNotes))
                 .then(() => newNote);
         }
@@ -47,4 +48,4 @@ class Store {
         }
     }
 
-    module.exports = new Store()
+    module.exports = new Store
