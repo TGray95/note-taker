@@ -19,7 +19,9 @@
   ## Usage
 
   Run 'npm start' in the application directory to initiate the application. Enter 'http://localhost:3001/' into your browser's address bar to access the application homepage. From the homepage, you can click on the text areas labled 'Note Title' and 'Note Text' to create a new note. After filling these fields, a save icon will appear in the upper right corner, which may be clicked to save your note. Saved notes appear on the left of the document, alongside corresponding delete buttons that may be clicked to remove the relevant note.
+  ## Application Screenshot
   
+  ![alt text](./assets/note-taker-screenshot.png)
   ## Contributing
 
   N/A
